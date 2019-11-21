@@ -1,0 +1,6 @@
+FROM java:8  //项目依赖的镜像环境
+VOLUME /tmp  //目录挂载点
+ADD Eureka.jar app.jar
+#RUN bash -c 'touch /app.jar'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+EXPOSE 8761
