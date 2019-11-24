@@ -2,12 +2,13 @@ package com.zbej.farm.community.center;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableEurekaServer
-@SpringBootApplication
 public class EurekaCenterApplication extends SpringBootServletInitializer {
 
 	@Override
@@ -16,6 +17,7 @@ public class EurekaCenterApplication extends SpringBootServletInitializer {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(EurekaCenterApplication.class, args);
+		new SpringApplicationBuilder(EurekaCenterApplication.class).web(true).run(args);
+		//		SpringApplication.run(EurekaCenterApplication.class, args);
 	}
 }
